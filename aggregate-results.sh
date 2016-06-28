@@ -46,12 +46,14 @@ while read file; do
 	done <"$file"
 done
 
-if test -n "$failed_tests"; then
-	printf "\nfailed test(s):$failed_tests\n\n"
-fi
-
 printf "%-8s%d\n" fixed $fixed
 printf "%-8s%d\n" success $success
 printf "%-8s%d\n" failed $failed
 printf "%-8s%d\n" broken $broken
 printf "%-8s%d\n" total $total
+
+if test -n "$failed_tests"; then
+	printf "\nfailed test(s):$failed_tests\n\n"
+	exit 1
+fi
+
