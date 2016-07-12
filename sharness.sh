@@ -415,6 +415,7 @@ test_skip_() {
 #
 # Returns nothing.
 test_expect_success() {
+	cd "$SHARNESS_TRASH_DIRECTORY" || exit 1
 	test "$#" = 3 && { test_prereq=$1; shift; } || test_prereq=
 	test "$#" = 2 || error "bug in the test script: not 2 or 3 parameters to test_expect_success"
 	export test_prereq
@@ -454,6 +455,7 @@ test_expect_success() {
 #
 # Returns nothing.
 test_expect_failure() {
+	cd "$SHARNESS_TRASH_DIRECTORY" || exit 1
 	test "$#" = 3 && { test_prereq=$1; shift; } || test_prereq=
 	test "$#" = 2 || error "bug in the test script: not 2 or 3 parameters to test_expect_failure"
 	export test_prereq
@@ -812,7 +814,7 @@ SHARNESS_TEST_FILE="$0"
 export SHARNESS_TEST_FILE
 
 # Prepare test area.
-SHARNESS_TRASH_DIRECTORY="trash directory.$(basename "$SHARNESS_TEST_FILE" ".$SHARNESS_TEST_EXTENSION")"
+SHARNESS_TRASH_DIRECTORY="trash_directory.$(basename "$SHARNESS_TEST_FILE" ".$SHARNESS_TEST_EXTENSION")"
 test -n "$root" && SHARNESS_TRASH_DIRECTORY="$root/$SHARNESS_TRASH_DIRECTORY"
 case "$SHARNESS_TRASH_DIRECTORY" in
 /*) ;; # absolute path is good
