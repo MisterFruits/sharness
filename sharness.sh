@@ -149,7 +149,7 @@ exec 6<&0
 if test "$verbose" = "t"; then
 	exec 4>&2 3>&1
 else
-	exec 4>>output 3>>output
+	exec 4>>output.html 3>>output.html
 fi
 
 test_failure=0
